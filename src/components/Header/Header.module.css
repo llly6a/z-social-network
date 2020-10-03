@@ -1,0 +1,10 @@
+
+.Header {
+    grid-area: h;
+    background-color: slategray;
+  }
+  
+  .Header img{
+    margin: 0.5em;
+    width: 2em;
+  }
