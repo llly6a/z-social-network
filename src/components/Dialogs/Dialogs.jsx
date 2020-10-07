@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import s from './Dialogs.module.css';
 import Message from './Message/Message';
-import DialogItem from './Dialog/Dialog';
+import DialogItem from './DialogItem/DialogItem';
 import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/state';
 
 const Dialogs = (props) => {
@@ -32,7 +32,8 @@ const Dialogs = (props) => {
             <div></div>
             <div className={s.textarea}>
                 <textarea ref={textRef} onChange={onMessageChange}
-                value={props.state.newMessageText}></textarea>
+                value={props.state.newMessageText}
+                placeholder="Напишите что-нибудь..."/>
                 <button onClick={addMessage}>отправить</button>
             </div>
         </div>

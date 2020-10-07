@@ -7,13 +7,13 @@ let store = {
     _state : {
         postsPage: {
             posts: [
-                { id: 1, message: 'first post', likes: 2 },
-                { id: 2, message: 'second post', likes: 3 },
-                { id: 3, message: 'third post', likes: 4 },
-                { id: 4, message: 'four post', likes: 62 },
-                { id: 5, message: 'fifth post', likes: 12 },
+                { id: 0, message: 'first post', likes: 2 },
+                { id: 1, message: 'second post', likes: 3 },
+                { id: 2, message: 'third post', likes: 4 },
+                { id: 3, message: 'four post', likes: 62 },
+                { id: 4, message: 'fifth post', likes: 12 },
             ],
-            newPostText: 'enter txt here'
+            newPostText: ''
         },
         dialogsPage: {
             dialogs: [
@@ -25,11 +25,11 @@ let store = {
             ]
         ,
             messages: [
-                { id: 1, message: 'Hi' },
-                { id: 2, message: 'Meow' },
-                { id: 3, message: 'Arrrrr azazaza' },
+                { id: 0, message: 'Hi' },
+                { id: 1, message: 'Meow' },
+                { id: 2, message: 'Arrrrr azazaza' },
             ],
-            newMessageText: 'enter text here'
+            newMessageText: ''
         }
     },
     _callSubscriber() {
@@ -44,7 +44,7 @@ let store = {
     dispatch(action){
         if(action.type === ADD_POST){
         let newPost = {
-            id: this._state.postsPage.posts.lastIndexOf().id,
+            id: this._state.postsPage.posts.length,
             message: this._state.postsPage.newPostText,
             likes: 0
         }
@@ -56,7 +56,7 @@ let store = {
             this._callSubscriber(this._state);  
         } else if(action.type === ADD_MESSAGE){
             let newMessage = {
-                id: this._state.dialogsPage.dialogs.lastIndexOf().id,
+                id: this._state.dialogsPage.messages.length,
                 message: this._state.dialogsPage.newMessageText,
             }
             this._state.dialogsPage.messages.push(newMessage);
