@@ -1,32 +1,30 @@
-import React, { useRef } from 'react';
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/state';
+import React from 'react';
+import { addPostCreator, updateNewPostTextCreator } from '../../../redux/state';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
-    const textRef = useRef(null);
-
     let postsElements = props.state.posts
         .map(post => <Post message={post.message} like={post.likes} />)
 
-    let addPost = () => {
-        props.dispatch(addPostActionCreator());
+    let onAddPostClick = () => {
+        props.dispatch(addPostCreator());
     }
 
-    let onPostChange = () => {
-        props.dispatch(updateNewPostTextActionCreator(textRef.current.value));
+    let onNewPostChange = (e) => {
+        props.dispatch(updateNewPostTextCreator(e.target.value));
     }
 
     return (
         <div>
             <h3>My posts</h3>
             <div>
-                <textarea ref={textRef} onChange={onPostChange}
+                <textarea onChange={onNewPostChange}
                 value={props.state.newPostText}
-                placeholder="Напишите что-нибудь..."/>
+                placeholder="Print something..."/>
             </div>
             <div>
-                <button onClick={addPost}>New Post</button>
+                <button onClick={onAddPostClick}>Add Post</button>
             </div>
             <div className={s.Posts}>
                 {postsElements}
