@@ -1,39 +1,39 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import s from './Dialogs.module.css';
-import { NavLink } from 'react-router-dom';
-
-const DialogItem = (props) => {
-    return (
-        <div className={s.dialog}>
-            <NavLink to={"/dialogs/" + props.id} activeClassName={s.active}>
-                {props.name}
-            </NavLink>
-        </div>
-    )
-}
-
-const Message = (props) => {
-    return (
-        <div className={s.message}>
-            {props.message}
-        </div>
-    )
-}
+import Message from './Message/Message';
+import DialogItem from './Dialog/Dialog';
+import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/state';
 
 const Dialogs = (props) => {
+    const textRef = useRef(null);
+
     let dialogsElements = props.state.dialogs
-    .map(dialog => <DialogItem name={dialog.name} id={dialog.id} /> )
+        .map(dialog => <DialogItem name={dialog.name} id={dialog.id} />)
 
     let messagesElements = props.state.messages
-    .map(message => <Message message={message.message}/> )  
+        .map(message => <Message message={message.message} />)
+
+    let addMessage = () => {
+        props.dispatch(addMessageActionCreator());
+    }
+
+    let onMessageChange = () => {
+        props.dispatch(updateNewMessageTextActionCreator(textRef.current.value));
+    }
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                {dialogsElements}              
+                {dialogsElements}
             </div>
             <div className={s.messages}>
                 {messagesElements}
+            </div>
+            <div></div>
+            <div className={s.textarea}>
+                <textarea ref={textRef} onChange={onMessageChange}
+                value={props.state.newMessageText}></textarea>
+                <button onClick={addMessage}>отправить</button>
             </div>
         </div>
     )

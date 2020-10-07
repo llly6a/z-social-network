@@ -1,0 +1,12 @@
+.dialog{
+    margin: 0.5em;
+}
+ 
+.dialog a{
+    text-decoration: none;
+    color: darkslategray;
+}
+  
+.dialog a.active{
+    color: aliceblue
+}
