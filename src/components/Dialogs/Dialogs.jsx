@@ -2,21 +2,22 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import Message from './Message/Message';
 import DialogItem from './DialogItem/DialogItem';
-import { addMessageCreator, updateNewMessageTextCreator } from '../../redux/dialogsReducer';
 
 const Dialogs = (props) => {
-    let dialogsElements = props.state.dialogs
+    let dialogsElements = props.dialogs
         .map(dialog => <DialogItem name={dialog.name} id={dialog.id} />)
 
-    let messagesElements = props.state.messages
+    let messagesElements = props.messages
         .map(message => <Message message={message.message} />)
 
+    let newMessagetext = React.createRef();
+
     let onSendMessageClick = () => {
-        props.dispatch(addMessageCreator());
+        props.onAddMessage();
     }
 
-    let onNewMessageChange = (e) => {
-        props.dispatch(updateNewMessageTextCreator(e.target.value));
+    let onNewMessageChange = () => {
+        props.onChangeNewMessage(newMessagetext.current.value);
     }
 
     return (
@@ -29,8 +30,8 @@ const Dialogs = (props) => {
             </div>
             <div></div>
             <div className={s.textarea}>
-                <textarea onChange={onNewMessageChange}
-                value={props.state.newMessageText}
+                <textarea ref={newMessagetext} onChange={onNewMessageChange}
+                value={props.newMessageText}
                 placeholder="Print something..."/>
                 <button onClick={onSendMessageClick}>Send</button>
             </div>
