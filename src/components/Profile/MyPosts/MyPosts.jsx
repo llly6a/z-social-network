@@ -4,23 +4,24 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
-    let postsElements = props.state.posts
+    let newPostElement = React.createRef();
+    let postsElements = props.posts
         .map(post => <Post message={post.message} like={post.likes} />)
 
     let onAddPostClick = () => {
-        props.dispatch(addPostCreator());
+        props.addPost();
     }
 
-    let onNewPostChange = (e) => {
-        props.dispatch(updateNewPostTextCreator(e.target.value));
+    let onNewPostChange = () => {
+        props.updateNewPostText(newPostElement.current.value);
     }
 
     return (
         <div>
             <h3>My posts</h3>
             <div>
-                <textarea onChange={onNewPostChange}
-                value={props.state.newPostText}
+                <textarea ref={newPostElement} onChange={onNewPostChange}
+                value={props.newPostText}
                 placeholder="Print something..."/>
             </div>
             <div>
