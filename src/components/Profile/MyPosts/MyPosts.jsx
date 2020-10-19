@@ -1,5 +1,4 @@
 import React from 'react';
-import { addPostCreator, updateNewPostTextCreator } from '../../../redux/profileReducer';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 

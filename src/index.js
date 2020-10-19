@@ -5,19 +5,22 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './redux/redux-store';
 import { BrowserRouter } from 'react-router-dom';
+import StoreContext from './StoreContext';
 
 let rerenderEntireTree = (state) => {
-   ReactDOM.render(
+  ReactDOM.render(
     <BrowserRouter>
-      <App store={store}/>
+      <StoreContext.Provider value = {store}>
+        <App />
+      </StoreContext.Provider>
     </BrowserRouter>,
-      document.getElementById('root')
+    document.getElementById('root')
   );
 }
 
 rerenderEntireTree(store.getState());
 
-store.subscribe( () => {
+store.subscribe(() => {
   rerenderEntireTree(store.getState());
 }
 );
