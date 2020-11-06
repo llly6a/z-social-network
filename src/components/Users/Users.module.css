@@ -1,5 +1,16 @@
+.user{
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+
+
 .userPhoto{
     width: 100px;
     height: 100px;
     border-radius: 50px;
+}
+
+.selectedPage{
+    font-weight: bold;
 }
