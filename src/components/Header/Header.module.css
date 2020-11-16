@@ -1,10 +1,44 @@
 
 .Header {
-    grid-area: h;
-    background-color: slategray;
+    background-color: var(--color-main);
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    align-items: center;
   }
   
   .Header img{
-    margin: 0.5em;
-    width: 2em;
+    margin: 0.5vh;
+    height: 4vh;
+  }
+
+  .login{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .login img{
+    border-radius: 100%;
+  }
+
+  .login p{
+    color: aliceblue;
+  }
+
+  .login a{
+    color: white;
+  }
+
+  .logo{
+    margin: 0.5vh;
+    height: 4vh;
+    color: var(--color-controls);
+  }
+
+  .userIcon{
+    margin: 0.5vh;
+    height: 4vh;
+    color: var(--color-forms);
   }

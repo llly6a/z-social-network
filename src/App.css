@@ -1,19 +1,30 @@
 *{padding: 0;margin: 0px;}
 *{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+
+:root {
+  --color-forms: white;
+  --color-main: #3b3b3b;
+  --color-middle: #6d6d6d;
+  --color-background:#e2e2e2;
+  --color-controls:#EC5113;
+  --color-links: #13AEEC;
+}
+
 .app-wrapper{
-display: grid;
-grid-template-areas: 
-  "h h"
-  "n c"
-  ;
-  grid-template-rows: 1fr;
-  grid-template-columns: 2fr 10fr;
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
+.app-page{
+  width: 80vw;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  margin-left: 10%;
 }
 
 .app-wrapper-content{
-  padding: 1em;
-  grid-area: c;
-  background-color:lightsteelblue;
+  background-color: var(--color-background);
+  justify-self: stretch;
 }
 
 button{
@@ -21,7 +32,7 @@ button{
   padding-left: 0.4em;
   padding-right: 0.4em;
   color: white;
-  background-color: slategrey;
+  background-color: var(--color-controls);
   font: 1em;
   font-weight: bold;
   width: fit-content;

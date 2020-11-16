@@ -1,14 +1,14 @@
 .Navbar{
-    padding: 1em;
-    grid-area: n;
-    background-color: rgb(143, 162, 182);
+    padding: 1vw;
+    background-color: var(--color-middle);
+    width: auto;
   }
 
 .Item a{
   text-decoration: none;
-  color: aliceblue;
+  color: white;
 }
 
 .Item a.active{
-  color: darkslategray;
+  color: var(--color-links);
 }

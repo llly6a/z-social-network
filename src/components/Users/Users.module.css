@@ -3,14 +3,24 @@
     grid-template-rows: auto auto;
 }
 
-
-
 .userPhoto{
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
+    margin: 0.5vh;
+    height: 14vh;
+    border-radius: 4vh;
 }
 
 .selectedPage{
     font-weight: bold;
+    color: var(--color-controls);
+}
+
+.userIcon{
+    margin: 0.5vh;
+    height: 14vh;
+    border-radius: 4vh;
+    color: var(--color-middle);
+}
+
+.pageNumber{
+    padding: 0.5vw;
 }

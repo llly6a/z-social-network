@@ -4,7 +4,7 @@ import ProfileInfo from './MyPosts/ProfileInfo/ProfileInfo';
 
 const Profile = (props) => {
     return (
-        <div className='app-wrapper-content'>
+        <div>
             <ProfileInfo profile={props.profile}/>
             <MyPostsContainer />
         </div>

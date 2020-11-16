@@ -1,10 +1,25 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import Preloader from '../common/Preloader/Preloader';
 import s from './Header.module.css';
-
-const Header = () => {
+import { ReactComponent as Logo } from '../../assets/images/logo.svg';
+import { ReactComponent as UserIcon } from '../../assets/images/user.svg';
+const Header = (props) => {
     return (
         <header className={s.Header}>
-            <img src='https://upload.wikimedia.org/wikipedia/commons/f/f5/Deepin_logo.svg' alt='logo'></img>
+            <Logo className={s.logo}/>
+            {props.isFetching ? <Preloader /> :
+                <div className={s.login}>
+                    {props.isAuth ?  <>
+                        <p>{props.login}</p>
+                        {props.userPhoto ?
+                        <img src={props.userPhoto} alt='ava'/> :
+                        <UserIcon className={s.userIcon}/>}
+                    </> :
+                        <NavLink to={'/login'}>Login</NavLink>
+                    }
+                </div>
+            }
         </header>
     )
 }

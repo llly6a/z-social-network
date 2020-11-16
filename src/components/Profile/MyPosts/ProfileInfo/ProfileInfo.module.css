@@ -1,5 +1,4 @@
 .DescriptionBlock{
-    margin: 0.5em;
     display: grid;
     grid-template-rows: auto;
 }
@@ -7,10 +6,6 @@
 .job{
     width: 48px;
     height: 48px;
-}
-
-.about{
-
 }
 
 .jobInfo{
