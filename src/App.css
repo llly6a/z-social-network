@@ -40,6 +40,10 @@ button{
   border-radius: 1em;
 }
 
+button:disabled{
+  background-color: var(--color-middle);
+}
+
 textarea{
   background-color: aliceblue;
   border: 0;
