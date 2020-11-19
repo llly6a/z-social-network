@@ -46,4 +46,6 @@ export const addPost = () => ({type: ADD_POST});
 export const updateNewPostText = (newText) =>
 ({type: UPDATE_NEW_POST_TEXT, newText});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+
+
 export default profileReducer;

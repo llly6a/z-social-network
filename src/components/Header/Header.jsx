@@ -8,15 +8,17 @@ const Header = (props) => {
     return (
         <header className={s.Header}>
             <Logo className={s.logo}/>
-            {props.isFetching ? <Preloader /> :
-                <div className={s.login}>
-                    {props.isAuth ?  <>
+            {props.isFetching
+            ? <Preloader />
+            : <div className={s.login}>
+                    {props.isAuth
+                    ? <>
                         <p>{props.login}</p>
-                        {props.userPhoto ?
-                        <img src={props.userPhoto} alt='ava'/> :
-                        <UserIcon className={s.userIcon}/>}
-                    </> :
-                        <NavLink to={'/login'}>Login</NavLink>
+                        {props.userPhoto
+                        ? <img src={props.userPhoto} alt='ava'/>
+                        :<UserIcon className={s.userIcon}/>}
+                      </>
+                    : <NavLink to={'/login'}>Login</NavLink>
                     }
                 </div>
             }

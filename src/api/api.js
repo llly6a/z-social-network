@@ -12,26 +12,23 @@ export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 4) {
         return ax.get(`users?page=${currentPage}&count=${pageSize}`)
         .then(response => response.data);
-    }
-}
-
-export const profileAPI = {
-    getProfile(userId){
-    return ax.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-    }
-}
-
-export const authAPI = {
-    authMe(){
-        return ax.get(`https://social-network.samuraijs.com/api/1.0/auth/me`)
-    }
-}
-
-export const followAPI = {
+    },
     unfollow(userId) {
         return ax.delete(`follow/${userId}`)
     },
     follow(userId) {
         return ax.post(`follow/${userId}`)
+    }
+}
+
+export const profileAPI = {
+    getProfile(userId){
+    return ax.get(`profile/` + userId)
+    }
+}
+
+export const authAPI = {
+    authMe(){
+        return ax.get(`auth/me`)
     }
 }
