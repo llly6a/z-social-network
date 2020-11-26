@@ -42,3 +42,9 @@
     height: 4vh;
     color: var(--color-forms);
   }
+
+  .user{
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+  }
