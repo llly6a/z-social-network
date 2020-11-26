@@ -1,3 +1,5 @@
+import { authAPI } from "../api/api";
+
 const SET_USER_DATA = 'SET_USER_DATA';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const SET_USER_PHOTO = 'SET_USER_PHOTO';
@@ -38,6 +40,16 @@ export const setAuthUserData = (userId, email, login) => ({ type: SET_USER_DATA,
 export const setUserPhoto = (userPhoto) => ({ type: SET_USER_PHOTO, userPhoto});
 export const setFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
-
+export const getAuthUserData = () => (dispatch) => {
+    dispatch(setFetching(true));
+    authAPI.authMe()
+    .then(response => {
+            if(response.data.resultCode === 0){
+                let {id, email, login} = response.data.data;
+                dispatch(setAuthUserData(id ,email, login));
+                dispatch(setFetching(false));
+            }
+    });
+}
 
 export default authReducer;

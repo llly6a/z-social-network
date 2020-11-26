@@ -12,12 +12,7 @@ const Header = (props) => {
             ? <Preloader />
             : <div className={s.login}>
                     {props.isAuth
-                    ? <>
-                        <p>{props.login}</p>
-                        {props.userPhoto
-                        ? <img src={props.userPhoto} alt='ava'/>
-                        :<UserIcon className={s.userIcon}/>}
-                      </>
+                    ? <p>{props.login}</p>
                     : <NavLink to={'/login'}>Login</NavLink>
                     }
                 </div>
