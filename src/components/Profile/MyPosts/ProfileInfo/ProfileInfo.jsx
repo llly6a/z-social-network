@@ -3,6 +3,8 @@ import Preloader from '../../../common/Preloader/Preloader';
 import s from './ProfileInfo.module.css';
 import employee from '../../../../assets/images/employee.svg';
 import jobSearch from '../../../../assets/images/job-search.svg';
+import ProfileStatus from './ProfileStatus';
+ 
 
 const SocialIcon = (props) => {
     return (
@@ -23,6 +25,7 @@ const ProfileInfo = (props) => {
             <div className={s.descriptionItem}>
                 <img src={props.profile.photos.large} alt='ava' />
                 <h2>{props.profile.fullName}</h2>
+                <ProfileStatus status={'123'} />
             </div>
             <div className={`${s.Contacts} ${s.descriptionItem}`}>
                 <SocialIcon link={props.profile.contacts.facebook} />
