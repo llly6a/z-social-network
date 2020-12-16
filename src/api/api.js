@@ -20,12 +20,30 @@ export const usersAPI = {
         return ax.post(`follow/${userId}`)
     },
     getProfile(userId) {
-        return ax.get(`profile/` + userId)
+        console.warn('this method is obsolete, please use ProfileAPI');
+        return profileAPI.getProfile(userId);
+    }
+}
+
+export const profileAPI = {
+    getProfile(userId) {
+        return ax.get(`profile/` + userId);
+    },
+    getStatus(userId) {
+       return ax.get(`profile/status/` + userId);       
+    },
+    updateStatus(status) {
+        return ax.put(`profile/status/`, {status: status});       
     }
 }
 
 export const authAPI = {
     authMe() {
         return ax.get(`auth/me`)
+    },
+    login(formData){
+        return ax.post('auth/login/', {email: formData.email,
+            password: formData.password,
+            rememberMe: formData.rememberMe });
     }
 }
