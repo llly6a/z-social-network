@@ -1,50 +1,44 @@
 
 .Header {
-    background-color: var(--color-main);
-    display: grid;
-    grid-template-columns: auto auto;
+    display: flex;
     justify-content: space-between;
+    height: 70px;
+    margin: 0 1em 1em 1em;
     align-items: center;
   }
   
   .Header img{
-    margin: 0.5vh;
-    height: 4vh;
+
   }
 
   .login{
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: space-between;
-    align-items: center;
+
   }
 
   .login img{
-    border-radius: 100%;
+
   }
 
   .login p{
-    color: aliceblue;
+  
   }
 
   .login a{
-    color: white;
+ 
   }
 
   .logo{
-    margin: 0.5vh;
-    height: 4vh;
     color: var(--color-controls);
+    height: 4em;
   }
 
   .userIcon{
-    margin: 0.5vh;
-    height: 4vh;
-    color: var(--color-forms);
+    color: var(--color-elements);
+    margin: 0 1em 0 1em;
+    height: 4em;
   }
 
   .user{
-    display: grid;
-    grid-auto-flow: column;
+    display: flex;
     align-items: center;
   }

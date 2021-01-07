@@ -1,14 +1,34 @@
 .Navbar{
-    padding: 1vw;
-    background-color: var(--color-middle);
-    width: auto;
-  }
+  background: var(--background-main);
+  background-blend-mode: var(--background-main-blend-mode);
+  box-shadow: var(--background-main-shadow-64);
+  border-radius: var(--background-main-radius);
+  height: 100%;
+  padding: 0.5em;
+  margin: 0em 1em;
+}
 
 .Item a{
+  margin: 0.5em 0.5em 1em 0.5em;
+  padding-left: 1em;
+  line-height: 3.24em;
+  display:block;
   text-decoration: none;
-  color: white;
+  background: var(--background-main);
+  background-blend-mode: var(--background-main-blend-mode);
+  box-shadow: var(--background-main-shadow-24);
+  border-radius: var(--background-main-radius-24);
 }
 
 .Item a.active{
-  color: var(--color-links);
+  background: var(--background-main-down);
+  box-shadow: var(--background-main-shadow-down-24);
+}
+
+@media (min-width: 641px){
+.Navbar {
+    clear: left;
+    float: left;
+    width: calc(20% - 2em);
+}
 }

@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
+    for (let i = 1; i <= 15; i++) {
         pages.push(i);
     }
 
@@ -19,7 +19,7 @@ let Users = (props) => {
                     : <UserIcon className={s.userIcon}/>}
                 </NavLink>
             </div>
-            <div>{u.name}</div>
+            <p>{u.name}</p>
             <div className={s.follow}>
                 {u.followed
                 ? <button disabled={props.followingInProgress.some(id => id === u.id)}
@@ -32,7 +32,7 @@ let Users = (props) => {
             <div>{"u.location.country"}</div>
             <div>{"u.location.city"}</div>*/}
         </div>)}
-        <div>
+        <div className={s.pages}>
             {pages.map(p => {
                 return <span key={p}
                     className={props.currentPage === p ? `${s.selectedPage} ${s.pageNumber}` : `${s.pageNumber}`}

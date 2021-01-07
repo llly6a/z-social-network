@@ -1,23 +1,11 @@
 .dialogs{
-  display: grid;
-  grid-template-columns: 2fr 10fr;
-  gap: 0.5em;
+
 }
 
 .messages{
-  display: grid;
-  gap: 0.5em;
-  padding: 0.5em;
-  box-shadow: 0em 0.4em 1em rgba(47, 79, 79, 0.247);
-  border-radius: 1em;
-  padding: 0.5em;
+
 }
 
 .textarea{
-  display: grid;
-  grid-auto-flow: row;
-  gap:0.5em;
-  padding: 0.5em;
-  box-shadow: 0em 0.4em 1em rgba(47, 79, 79, 0.247);
-  border-radius: 1em;
+
 }

@@ -1,8 +1,3 @@
-
 .message{
-    background-color: aliceblue;
-    padding: 0.5em;
-    border-radius: 1em;
-    width: fit-content;
-    box-shadow: 0em 0.4em 1em rgba(47, 79, 79, 0.247);
+    background-color: var(--color-main);
 }

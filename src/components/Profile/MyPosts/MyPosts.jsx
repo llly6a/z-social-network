@@ -16,7 +16,7 @@ const MyPosts = (props) => {
     }
 
     return (
-        <div>
+        <div className={s.Posts}>
             <h3>My posts</h3>
             <div>
                 <textarea ref={newPostElement} onChange={onNewPostChange}

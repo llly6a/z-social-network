@@ -1,12 +1,22 @@
 .user{
-    display: grid;
-    grid-template-rows: auto auto;
+    width: calc(25% - 1em);
+    margin: 0.5em;
+    padding: 0.5em;
+    display: inline-block;
+    background: var(--background-main);
+    background-blend-mode: var(--background-main-blend-mode);
+    box-shadow: var(--background-main-shadow-24);
+    border-radius: var(--background-main-radius-24);
 }
 
 .userPhoto{
-    margin: 0.5vh;
-    height: 14vh;
-    border-radius: 4vh;
+    max-width: 80%;
+    height: auto;
+    border-radius: var(--background-main-radius-24);
+}
+
+.pages{
+    margin: 1em 1em 0 1em;
 }
 
 .selectedPage{
@@ -15,12 +25,18 @@
 }
 
 .userIcon{
-    margin: 0.5vh;
-    height: 14vh;
-    border-radius: 4vh;
     color: var(--color-middle);
+    border-radius: var(--background-main-radius);
+    max-width: 80%;
+    height: auto;
 }
 
 .pageNumber{
-    padding: 0.5vw;
+    padding: 0.01vw;
+}
+
+@media (max-width: 641px){
+    .user {
+        width: calc(50% - 1em);
+    }
 }
