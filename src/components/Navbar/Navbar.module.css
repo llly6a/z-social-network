@@ -10,10 +10,13 @@
 
 .Item a{
   margin: 0.5em 0.5em 1em 0.5em;
-  padding-left: 1em;
+  padding: 0 1em 0 1em;
   line-height: 3.24em;
   display:block;
   text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   background: var(--background-main);
   background-blend-mode: var(--background-main-blend-mode);
   box-shadow: var(--background-main-shadow-24);

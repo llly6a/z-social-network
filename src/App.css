@@ -7,8 +7,10 @@
 
 .app-page{
   max-width: 1400px;
+  min-width: 320px;
+  min-height: 100vh;
   margin: auto;
-  padding: 10px;
+  padding: 1em;
   background: var(--background-main);
   background-blend-mode: var(--background-main-blend-mode);
 }
@@ -40,6 +42,7 @@ h1, h2, h3, h4, h5, h6, p, a, a:visited{
 
 .app-wrapper-content{
   text-align: center;
+  min-height: calc(100vh - 204px); /* 70px hrader + 70px footer + 4em between*/
   padding: 1em;
   margin: 1em 1em 1em 1em;
   /*width: 100%;*/
@@ -52,7 +55,6 @@ h1, h2, h3, h4, h5, h6, p, a, a:visited{
 
 button{
   margin: 0.5em 0.5em 1em 0.5em;
-  padding: 0 1em 0 1em;
   width: calc(100% - 2em);
   line-height: 3.24em;
   text-decoration: none;
