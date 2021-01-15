@@ -11,18 +11,8 @@ const Dialogs = (props) => {
     let messagesElements = props.messages
         .map(message => <Message message={message.message} key={message.id} />)
 
-    let newMessagetext = React.createRef();
-
-    let onSendMessageClick = () => {
-        props.sendMessage();
-    }
-
-    let onNewMessageChange = () => {
-        props.updateNewMessageText(newMessagetext.current.value);
-    }
-
-    let onSubmit =() =>{
-        console.log('123');
+    let onSubmit =(value) =>{
+        props.sendMessage(value.message);
     }
 
     return (
@@ -32,14 +22,11 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
+                <div className={s.textarea}>
+                    <MessageForm onSubmit={onSubmit}/>
+                </div>
             </div>
-            <div className={s.textarea}>
-                <textarea ref={newMessagetext} onChange={onNewMessageChange}
-                value={props.newMessageText}
-    placeholder="Print something..."/>
-                <button onClick={onSendMessageClick}>Send</button>
-                <MessageForm onSubmit={onSubmit}/>
-            </div>
+
         </div>
     )
 }

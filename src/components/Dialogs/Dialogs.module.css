@@ -1,17 +1,18 @@
 .dialogsItems{
-    display: flex;
-    flex-direction: column;
-    width: 30%;
+    width: 20%;
+    text-align: left;
     padding: 0;
     margin: 0;
 }
 
 .dialogs{
-
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .messages{
-    width: 40%;
+    width: 78%;
 }
 
 .textarea{

@@ -1,3 +1,16 @@
 .message{
-    background-color: var(--color-main);
+    margin: 0.5em 0.5em 1em 0.5em;
+    padding: 0 1em 0 1em;
+    line-height: 3.24em;
+    display:block;
+    text-decoration: none;
+    text-align: left;
+    width: min-content;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: var(--background-main);
+    background-blend-mode: var(--background-main-blend-mode);
+    box-shadow: var(--background-main-shadow-24);
+    border-radius: var(--background-main-radius-24);
 }
