@@ -3,7 +3,6 @@ import { authAPI } from "../api/api";
 const SET_USER_DATA = 'SET_USER_DATA';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const SET_USER_PHOTO = 'SET_USER_PHOTO';
-const SET_LOGIN_FORM = 'SET_LOGIN_FORM';
 
 let initialState = {
     userId: null,
@@ -21,8 +20,7 @@ const authReducer = (state = initialState, action) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload
             }
         case SET_USER_PHOTO:
             return {
@@ -34,38 +32,40 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 isFetching: action.isFetching
             }
-        case SET_LOGIN_FORM:
-            return {
-                ...state,
-                ...action.data
-            }
         default:
             return state;
     }
 }
 
-export const setAuthUserData = (userId, email, login) => ({ type: SET_USER_DATA, data:{userId, email, login} });
+export const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_USER_DATA, payload:
+    {userId, email, login, isAuth} });
 export const setUserPhoto = (userPhoto) => ({ type: SET_USER_PHOTO, userPhoto});
 export const setFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
-export const setLoginForm = (email, password, rememberMe) => ({type: SET_LOGIN_FORM, data:{email, password, rememberMe} });
 export const getAuthUserData = () => (dispatch) => {
     dispatch(setFetching(true));
     authAPI.authMe()
     .then(response => {
             if(response.data.resultCode === 0){
                 let {id, email, login} = response.data.data;
-                dispatch(setAuthUserData(id ,email, login));
+                dispatch(setAuthUserData(id ,email, login, true));
                 dispatch(setFetching(false));
             }
     });
 }
 
-export const getLoginStatus = (loginFormData) => (dispatch) => {
-    dispatch(setLoginForm(loginFormData));
-    let {email, password, rememberMe} = loginFormData;
-    authAPI.login({email, password, rememberMe}).then(response => {
+export const login = (email, password, rememberMe) => (dispatch) => {
+
+    authAPI.login(email, password, rememberMe).then(response => {
         if(response.data.resultCode === 0){
             dispatch(getAuthUserData());
+        }
+    })
+}
+
+export const logout = () => (dispatch) => {
+    authAPI.logout().then(response => {
+        if(response.data.resultCode === 0){
+            dispatch(setAuthUserData(null ,null, null, false));
         }
     })
 }

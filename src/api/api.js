@@ -41,9 +41,12 @@ export const authAPI = {
     authMe() {
         return ax.get(`auth/me`)
     },
-    login(formData){
-        return ax.post('auth/login/', {email: formData.email,
-            password: formData.password,
-            rememberMe: formData.rememberMe });
+    login(email,password,rememberMe=false){
+        return ax.post('auth/login/', {email,
+            password,
+            rememberMe});
+    },
+    logout(){
+        return ax.delete('auth/login/');
     }
 }
