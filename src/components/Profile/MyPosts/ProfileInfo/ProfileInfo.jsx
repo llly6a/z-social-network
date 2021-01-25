@@ -4,11 +4,14 @@ import s from './ProfileInfo.module.css';
 import employee from '../../../../assets/images/employee.svg';
 import jobSearch from '../../../../assets/images/job-search.svg';
 import ProfileStatus from './ProfileStatus';
- 
+import { ReactComponent as UserIcon } from '../../../../assets/images/user.svg';
 
 const SocialIcon = (props) => {
+    if(props.link)console.log(props.link);
     return (
-        <a href={props.link ? props.link : ''}>{props.link ? props.link[0].toUpperCase() : 'x'}</a>
+        <span>
+            {props.link && <a href={props.link}>{props.link[0].toUpperCase()}</a>}
+        </span>
     )
 }
 
@@ -19,17 +22,26 @@ const ProfileInfo = (props) => {
         return <Preloader />
     }
 
+    let sIcons = [];
+    for (let i = 0; i <= Object.keys(props.profile.contacts).length; i++) {
+        if(props.profile.contacts[i]){
+            sIcons.push(props.profile.contacts[i]);
+            console.log(props.profile.contacts[i]);
+        }
+    }
 
     return (
         <div className={s.DescriptionBlock}>
             <div className={s.descriptionItem}>
-                <img src={props.profile.photos.large} alt='ava' />
+                {props.profile.photos.large ?
+                <img src={props.profile.photos.large} alt='ava' className={s.userIcon}/> :
+                <UserIcon className={s.userIcon}/>}
                 <h2>{props.profile.fullName}</h2>
                 <ProfileStatus status={props.status}
                  updateStatus={props.updateStatus} />
             </div>
-            <div className={`${s.Contacts} ${s.descriptionItem}`}>
-                <SocialIcon link={props.profile.contacts.facebook} />
+            <div className={`${s.contacts} ${s.descriptionItem}`}>
+               {/* <SocialIcon link={props.profile.contacts.facebook} />
                 <SocialIcon link={props.profile.contacts.website} />
                 <SocialIcon link={props.profile.contacts.vk} />
                 <SocialIcon link={props.profile.contacts.twitter} />
@@ -37,6 +49,8 @@ const ProfileInfo = (props) => {
                 <SocialIcon link={props.profile.contacts.youtube} />
                 <SocialIcon link={props.profile.contacts.github} />
                 <SocialIcon link={props.profile.contacts.mainLink} />
+                */}
+                {sIcons.map(i => {return <span>{i}</span>})}
             </div>
             <div className={`${s.jobInfo}  ${s.descriptionItem}`} >
                 <h3>О работе:</h3>

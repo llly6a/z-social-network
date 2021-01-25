@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { authAPI } from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -43,7 +44,7 @@ export const setUserPhoto = (userPhoto) => ({ type: SET_USER_PHOTO, userPhoto});
 export const setFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 export const getAuthUserData = () => (dispatch) => {
     dispatch(setFetching(true));
-    authAPI.authMe()
+    return authAPI.authMe()
     .then(response => {
             if(response.data.resultCode === 0){
                 let {id, email, login} = response.data.data;
@@ -58,6 +59,9 @@ export const login = (email, password, rememberMe) => (dispatch) => {
     authAPI.login(email, password, rememberMe).then(response => {
         if(response.data.resultCode === 0){
             dispatch(getAuthUserData());
+        } else {
+            let message = response.data.messages.length > 0 ? response.data.messages[0] : "Unknown Error";
+            dispatch(stopSubmit("login", {_error: message}));
         }
     })
 }
