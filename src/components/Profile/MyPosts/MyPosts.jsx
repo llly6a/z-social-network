@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import ReduxPostForm from './PostForm';
 
 
-const MyPosts = (props) => {
-    let postsElements = props.posts
+const MyPosts = React.memo(props => {
+    let postsElements =[...props.posts].reverse()
         .map(post => <Post message={post.message} like={post.likes} key={post.id} />)
 
     let onAddPostClick = (value) => {
@@ -21,6 +21,6 @@ const MyPosts = (props) => {
             </div>
         </div>
     )
-}
+})
 
 export default MyPosts;
