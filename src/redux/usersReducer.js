@@ -71,34 +71,31 @@ export const toggleFollowingProgress = (isFetching, userId) => ({type: TOGGLE_IS
 
 //thunks
 
-export const requestUsers = (page, pageSize) => (dispatch) => {
+export const requestUsers = (page, pageSize) => async (dispatch) => {
     dispatch(toggleIsFetching(true));
-    usersAPI.getUsers(page, pageSize).then(data => {
-            dispatch(setUsers(data.items));
-            dispatch(setTotalUsersCount(data.totalCount));
-            dispatch(setCurrentPage(page));
-            dispatch(toggleIsFetching(false));
-        });
+    let response = await usersAPI.getUsers(page, pageSize)
+        dispatch(setUsers(response.items));
+        dispatch(setTotalUsersCount(response.totalCount));
+        dispatch(setCurrentPage(page));
+        dispatch(toggleIsFetching(false));
 }
 
-export const follow = (userId) => (dispatch) => {
+export const follow = (userId) => async (dispatch) => {
     dispatch(toggleFollowingProgress(true, userId));
-    usersAPI.follow(userId).then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(followSucsess(userId));
-                dispatch(toggleFollowingProgress(false, userId));
-            }
-        });
+    let response = await usersAPI.follow(userId)
+        if (response.data.resultCode === 0) {
+            dispatch(followSucsess(userId));
+            dispatch(toggleFollowingProgress(false, userId));
+        }
 }
 
-export const unfollow = (userId) => (dispatch) => {
+export const unfollow = (userId) => async (dispatch) => {
     dispatch(toggleFollowingProgress(true, userId));
-    usersAPI.unfollow(userId).then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(unfollowSucsess(userId));
-                dispatch(toggleFollowingProgress(false, userId));
-            }
-        });
+    let response = await usersAPI.unfollow(userId)
+        if (response.data.resultCode === 0) {
+            dispatch(unfollowSucsess(userId));
+            dispatch(toggleFollowingProgress(false, userId));
+        }
 }
 
 export default usersReducer;
