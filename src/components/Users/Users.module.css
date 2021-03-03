@@ -22,26 +22,11 @@
     border-radius: var(--background-main-radius-24);
 }
 
-.pages{
-    margin: 1em 1em 0 1em;
-    overflow-x: scroll;
-    overflow-y: hidden;
-}
-
-.selectedPage{
-    font-weight: bold;
-    color: var(--color-controls);
-}
-
 .userIcon{
     color: var(--color-middle);
     border-radius: var(--background-main-radius);
     max-width: 80%;
     height: auto;
-}
-
-.pageNumber{
-    padding: 1em;
 }
 
 @media (max-width: 641px){

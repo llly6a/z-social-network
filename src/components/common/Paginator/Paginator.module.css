@@ -1,0 +1,47 @@
+.pages{
+    padding: 1em;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.pageNumber{
+    padding: 1em;
+    cursor: pointer;
+}
+
+.selectedPage{
+    font-weight: bold;
+    color: var(--color-controls);
+}
+
+.pagesButton{
+    vertical-align: -0.1em;
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    cursor: pointer;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+  }
+
+.previus{
+    background-image: url('../../../assets/images/left-arrow.svg');
+}
+
+.foward{ 
+    background-image: url('../../../assets/images/right-arrow.svg');
+}
+
+@media (max-width: 641px){
+    .user {
+        width: calc(50% - 1em);
+    }
+}
