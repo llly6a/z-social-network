@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter, Route, withRouter } from 'react-router-dom';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
-import UsersContainer from './components/Users/UsersContainer';
-import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import Footer from './components/Footer/Footer';
@@ -14,6 +11,13 @@ import { initializeApp } from './redux/appReducer';
 import Preloader from './components/common/Preloader/Preloader';
 import store from './redux/redux-store';
 
+// LAZY 
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
+
+//
 
 class App extends Component {
 
@@ -25,16 +29,17 @@ class App extends Component {
     if (!this.props.initialized)
       return <Preloader />
 
-
     return (
       <div className='app-page'>
         <HeaderContainer />
         <Navbar />
         <div className='app-wrapper-content'>
-          <Route path='/dialogs' render={() => <DialogsContainer />} />
-          <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
-          <Route path='/users' render={() => <UsersContainer />} />
-          <Route path='/login' render={() => <Login />} />
+          <Suspense fallback={<Preloader/>}>
+            <Route path='/dialogs' render={() => <DialogsContainer />} />
+            <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+            <Route path='/users' render={() => <UsersContainer />} />
+            <Route path='/login' render={() => <Login />} />
+          </Suspense>
         </div>
         <Footer />
       </div>
