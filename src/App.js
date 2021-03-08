@@ -15,7 +15,7 @@ import store from './redux/redux-store';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
-const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
+const Users = React.lazy(() => import('./components/Users/Users'));
 
 //
 
@@ -37,7 +37,7 @@ class App extends Component {
           <Suspense fallback={<Preloader/>}>
             <Route path='/dialogs' render={() => <DialogsContainer />} />
             <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
-            <Route path='/users' render={() => <UsersContainer />} />
+            <Route path='/users' render={() => <Users />} />
             <Route path='/login' render={() => <Login />} />
           </Suspense>
         </div>

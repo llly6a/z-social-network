@@ -12,7 +12,7 @@ let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
-    usersPage: usersReducer,
+    users: usersReducer,
     auth: authReducer,
     app: appReducer,
     form: formReducer
