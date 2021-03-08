@@ -4,7 +4,7 @@ import s from './ProfileInfo.module.css';
 import employee from '../../../../assets/images/employee.svg';
 import jobSearch from '../../../../assets/images/job-search.svg';
 import ProfileStatus from './ProfileStatus';
-import { ReactComponent as UserIcon } from '../../../../assets/images/user.svg';
+import UserIcon from '../../../../assets/images/user.svg';
 
 const SocialIcon = (props) => {
     if(props.link)console.log(props.link);
@@ -30,12 +30,17 @@ const ProfileInfo = (props) => {
         }
     }
 
+    const onMainPhotoSelected = (e) => {
+        if(e.target.files.length){
+            props.savePhoto(e.target.files[0]);
+        }
+    }
+
     return (
         <div className={s.DescriptionBlock}>
             <div className={s.descriptionItem}>
-                {props.profile.photos.large ?
-                <img src={props.profile.photos.large} alt='ava' className={s.userIcon}/> :
-                <UserIcon className={s.userIcon}/>}
+                <img src={props.profile.photos.large || UserIcon} alt='ava' className={s.userIcon}/>
+                {props.isOwner && <input type="file" onChange={onMainPhotoSelected}></input>}
                 <h2>{props.profile.fullName}</h2>
                 <ProfileStatus status={props.status}
                  updateStatus={props.updateStatus} />

@@ -34,6 +34,16 @@ export const profileAPI = {
     },
     updateStatus(status) {
         return ax.put(`profile/status/`, {status: status});       
+    },
+    savePhoto(file) {
+        const formData = new FormData();
+        formData.append("image", file);
+
+        return ax.put(`profile/photo/`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(response => response.data);       
     }
 }
 
