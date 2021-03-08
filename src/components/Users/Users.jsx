@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import s from './Users.module.css';
-import { ReactComponent as UserIcon } from '../../assets/images/user.svg';
+import userIcon from '../../assets/images/user.svg';
 import { NavLink } from 'react-router-dom';
 import Paginator from '../common/Paginator/Paginator';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
@@ -8,6 +8,8 @@ import { follow, requestUsers, unfollow } from '../../redux/usersReducer';
 import Preloader from '../common/Preloader/Preloader';
 
 let Users = () => {
+
+    // redux store selector
     const {
         users,
         pageSize,
@@ -15,21 +17,16 @@ let Users = () => {
         currentPage,
         isFetching,
         followingInProgress
-    } = useSelector(state => ({
-        users : state.users.users,
-        pageSize: state.users.pageSize,
-        totalUsersCount: state.users.totalUsersCount,
-        currentPage: state.users.currentPage,
-        isFetching: state.users.isFetching,
-        followingInProgress: state.users.followingInProgress
-        })
-    , shallowEqual)
+    } = useSelector(state => state.users, shallowEqual)
+
+    // dispatch functions
 
     const dispatch = useDispatch();
 
+    // first loading
     useEffect(() => {
         dispatch(requestUsers(currentPage, pageSize))
-    },[dispatch]);
+    },[]);
 
     const onPageChanged = (newPage) => {
         dispatch(requestUsers(newPage, pageSize))
@@ -43,22 +40,24 @@ let Users = () => {
         dispatch(unfollow(id));
     }
 
-    return <div>  
-        {isFetching ? <Preloader /> : null}
+    // jsx
 
+    return <div> 
+        {/* Preloader */}
+        {isFetching ? <Preloader /> : null}
+        {/* Paginator */}
         <Paginator 
         onPageChanged = {onPageChanged}
         currentPage = {currentPage}
         entitiesCount = {totalUsersCount}
         pageSize = {pageSize}
         buttonsCount = {10} />
-
+        {/* Users List */}
         {users.map(u => <div key={u.id} className={s.user}>
             <div>
                 <NavLink to={'/profile/' + u.id}>
-                    {u.photos.large != null
-                    ? <img src={u.photos.large} className={s.userPhoto} alt='ava'/>
-                    : <UserIcon className={s.userIcon}/>}
+                    <img src={u.photos.large || userIcon} className={s.userPhoto}
+                    alt='user photo'/>
                 </NavLink>
             </div>
             <p>{u.name}</p>

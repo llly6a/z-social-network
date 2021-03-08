@@ -32,7 +32,7 @@
   --background-main-radius: 16px;
   --background-main-radius-24: 4px;
   --background-main-down: linear-gradient(315deg, rgba(0, 0, 0, 0.6) 0%, rgba(255, 255, 255, 0) 100%), #EDEEF2;
-
+  --svg-color-middle: invert(35%) sepia(71%) saturate(0%) hue-rotate(200deg) brightness(105%) contrast(93%);
 }
 
 
