@@ -1,16 +1,16 @@
 import React from 'react';
-import Preloader from '../../../common/Preloader/Preloader';
-import s from './ProfileInfo.module.css';
-import employee from '../../../../assets/images/employee.svg';
-import jobSearch from '../../../../assets/images/job-search.svg';
-import ProfileStatus from './ProfileStatus';
-import UserIcon from '../../../../assets/images/user.svg';
+import Preloader from '../../common/Preloader/Preloader';
+import s from './UserInfo.module.css';
+import employee from '../../../assets/images/employee.svg';
+import jobSearch from '../../../assets/images/job-search.svg';
+import ProfileStatus from './UserStatus';
+import UserIcon from '../../../assets/images/user.svg';
 
-const SocialIcon = (props) => {
-    if(props.link)console.log(props.link);
+const SocialIcon = ({title , value}) => {
+
     return (
         <span>
-            {props.link && <a href={props.link}>{props.link[0].toUpperCase()}</a>}
+             <a href={value}>{title}</a>
         </span>
     )
 }
@@ -39,23 +39,18 @@ const ProfileInfo = (props) => {
     return (
         <div className={s.DescriptionBlock}>
             <div className={s.descriptionItem}>
-                <img src={props.profile.photos.large || UserIcon} alt='ava' className={s.userIcon}/>
-                {props.isOwner && <input type="file" onChange={onMainPhotoSelected}></input>}
+                <img src={props.profile.photos.large || UserIcon} alt='ava' className={props.profile.photos.large ? '' : s.userIcon}/>
+                {/*props.isOwner && <input type="file" onChange={onMainPhotoSelected}></input>*/}
+            </div>
+            <div className={s.descriptionItem}>               
                 <h2>{props.profile.fullName}</h2>
+            </div>
+            <div className={s.descriptionItem}>    
                 <ProfileStatus status={props.status}
                  updateStatus={props.updateStatus} />
             </div>
             <div className={`${s.contacts} ${s.descriptionItem}`}>
-               {/* <SocialIcon link={props.profile.contacts.facebook} />
-                <SocialIcon link={props.profile.contacts.website} />
-                <SocialIcon link={props.profile.contacts.vk} />
-                <SocialIcon link={props.profile.contacts.twitter} />
-                <SocialIcon link={props.profile.contacts.instagram} />
-                <SocialIcon link={props.profile.contacts.youtube} />
-                <SocialIcon link={props.profile.contacts.github} />
-                <SocialIcon link={props.profile.contacts.mainLink} />
-                */}
-                {sIcons.map(i => {return <span>{i}</span>})}
+                {Object.keys(props.profile.contacts).map(key => <SocialIcon key={key} title={key} value={props.profile.contacts[key]} />)}
             </div>
             <div className={`${s.jobInfo}  ${s.descriptionItem}`} >
                 <h3>О работе:</h3>

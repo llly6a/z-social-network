@@ -28,6 +28,17 @@
   box-shadow: var(--background-main-shadow-down-24);
 }
 
+
+p{
+  padding: 0 1em;
+}
+
+.separator {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+}
+
 @media (min-width: 641px){
 .Navbar {
     clear: left;

@@ -1,10 +1,10 @@
 import React from 'react';
-import s from './MyPosts.module.css';
+import s from './Posts.module.css';
 import Post from './Post/Post';
 import ReduxPostForm from './PostForm';
 
 
-const MyPosts = React.memo(props => {
+const Posts = React.memo(props => {
     let postsElements =[...props.posts].reverse()
         .map(post => <Post message={post.message} like={post.likes} key={post.id} />)
 
@@ -23,4 +23,4 @@ const MyPosts = React.memo(props => {
     )
 })
 
-export default MyPosts;
+export default Posts;

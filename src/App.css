@@ -6,16 +6,6 @@
 }
 
 .app-page{
-  max-width: 1400px;
-  min-width: 320px;
-  min-height: 100vh;
-  margin: auto;
-  padding: 1em;
-  background: var(--background-main);
-  background-blend-mode: var(--background-main-blend-mode);
-}
-
-:root {
   --color-forms: white;
   --color-main: #3b3b3b;
   --color-middle: #6d6d6d;
@@ -33,6 +23,13 @@
   --background-main-radius-24: 4px;
   --background-main-down: linear-gradient(315deg, rgba(0, 0, 0, 0.6) 0%, rgba(255, 255, 255, 0) 100%), #EDEEF2;
   --svg-color-middle: invert(35%) sepia(71%) saturate(0%) hue-rotate(200deg) brightness(105%) contrast(93%);
+  max-width: 1400px;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: auto;
+  padding: 1em;
+  background: var(--background-main);
+  background-blend-mode: var(--background-main-blend-mode);
 }
 
 

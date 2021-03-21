@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <nav className={s.Navbar}>
       <MenuLink link='/profile' text='Profile' />
-      <MenuLink link='/dialogs' text='Messages' />
+      <MenuLink link='/dialogs' text='Dialogs' />
       <MenuLink link='/users' text='Users' />
     </nav>
   )
