@@ -1,18 +1,40 @@
-.DescriptionBlock{
-    display: grid;
-    grid-template-columns: 50% 50%;
-    gap: 1em;
+.descriptionBlock{
+    display: flex;
+    flex-flow: row wrap;
 }
 
 .descriptionItem{
+    flex: 40%;
+    margin: 1%;
 }
 
-.job{
-    height: 2em;
+.links{
+    display: flex;
+    flex-flow: row wrap;
 }
+
+.links a{
+    padding: 1%;
+}
+
+.jobIcon{
+    display:inline-block;
+    height: 1em;
+    width: 2em;
+}
+
+.jobInfo{
+    display: flex;
+    flex-direction: column;
+}
+
 
 .userIcon{
     filter: var(--svg-color-middle);
     margin: 0 1em 0 1em;
     height: 16em;
+}
+
+.userPhoto{
+    width: 100%;
 }

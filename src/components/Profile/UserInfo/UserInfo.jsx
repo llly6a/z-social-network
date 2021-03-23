@@ -9,9 +9,7 @@ import UserIcon from '../../../assets/images/user.svg';
 const SocialIcon = ({title , value}) => {
 
     return (
-        <span>
-             <a href={value}>{title}</a>
-        </span>
+            <a href={value}>{title}</a>
     )
 }
 
@@ -37,31 +35,33 @@ const ProfileInfo = (props) => {
     }
 
     return (
-        <div className={s.DescriptionBlock}>
+        <div className={s.descriptionBlock}>
             <div className={s.descriptionItem}>
-                <img src={props.profile.photos.large || UserIcon} alt='ava' className={props.profile.photos.large ? '' : s.userIcon}/>
-                {/*props.isOwner && <input type="file" onChange={onMainPhotoSelected}></input>*/}
-            </div>
-            <div className={s.descriptionItem}>               
+                <img src={props.profile.photos.large || UserIcon} alt='ava' className={props.profile.photos.large ? s.userPhoto : s.userIcon}/>
                 <h2>{props.profile.fullName}</h2>
-            </div>
-            <div className={s.descriptionItem}>    
                 <ProfileStatus status={props.status}
                  updateStatus={props.updateStatus} />
+                {/*props.isOwner && <input type="file" onChange={onMainPhotoSelected}></input>*/}
             </div>
-            <div className={`${s.contacts} ${s.descriptionItem}`}>
-                {Object.keys(props.profile.contacts).map(key => <SocialIcon key={key} title={key} value={props.profile.contacts[key]} />)}
+            <div className={`${s.descriptionItem}`}>
+                <h3>About me:</h3>
+                <p>{props.profile.aboutMe || 'пользователь не добавил оисание о себе'}</p>
             </div>
-            <div className={`${s.jobInfo}  ${s.descriptionItem}`} >
-                <h3>О работе:</h3>
-                <p>{props.profile.lookingForAJob ? 'Работаю' : 'Ищу работу'}</p>
-                <img className={s.job} src={props.profile.lookingForAJob ? employee : jobSearch} alt='job' />
-                <p>{props.profile.lookingForAJobDescription}</p>
+            <div className={`${s.descriptionItem}`}>
+                <h3>Links:</h3>
+                <div className={s.links}>
+                    {Object.keys(props.profile.contacts).map(key => <SocialIcon key={key} title={key} value={props.profile.contacts[key]} />)}
+                </div>
             </div>
-            <div className={`${s.about} ${s.descriptionItem}`}>
-                <h3>Обо мне:</h3>
-                <p>{props.profile.aboutMe}</p>
+            <div className={`${s.descriptionItem}`} >
+                <h3>Job:</h3>
+                <img className={s.jobIcon} src={props.profile.lookingForAJob ? employee : jobSearch} alt='job' />
+                <span>{props.profile.lookingForAJob ? 'Работаю' : 'Ищу работу'}</span>
+                <p>
+                    {props.profile.lookingForAJobDescription || 'Пользователь не добавил описание о работе'}
+                </p>
             </div>
+
         </div>
     )
 }
