@@ -6,7 +6,7 @@ const Post = (props) => {
     return (
         <div className={s.post}>
             <aside className={s.photo}>
-                <img src={require('../../../../assets/images/user.svg')} alt='user-photo'/>
+                <img src={require('../../../../assets/images/user.svg')} alt='user-avatar'/>
             </aside>
             <article className={s.message}>
                 <p>{props.message}</p>  

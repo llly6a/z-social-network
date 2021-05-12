@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Profile from './Profile';
 import { getUserProfile,getStatus, updateStatus, savePhoto } from '../../redux/profileReducer';
 import { withRouter } from 'react-router-dom';
-import { WithAuthRedirect } from '../../hoc/WithAuthRedirect';
+//import { WithAuthRedirect } from '../../hoc/WithAuthRedirect';
 import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
@@ -26,7 +26,7 @@ class ProfileContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps){
-        if(this.props.match.params.userId != prevProps.match.params.userId){
+        if(this.props.match.params.userId !== prevProps.match.params.userId){
            this.refreshProfile();        
         }
  

@@ -26,7 +26,7 @@ let Users = () => {
     // first loading
     useEffect(() => {
         dispatch(requestUsers(currentPage, pageSize))
-    },[]);
+    },[dispatch, currentPage, pageSize]);
 
     const onPageChanged = (newPage) => {
         dispatch(requestUsers(newPage, pageSize))
@@ -57,7 +57,7 @@ let Users = () => {
             <div>
                 <NavLink to={'/profile/' + u.id}>
                     <img src={u.photos.large || userIcon} className={s.userPhoto}
-                    alt='user photo'/>
+                    alt='avatar'/>
                 </NavLink>
             </div>
             <p>{u.name}</p>
