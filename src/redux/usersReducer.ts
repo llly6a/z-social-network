@@ -11,20 +11,20 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 
-interface Users {
+type UserType = {
     id: number,
     name: string,
     status: string,
     uniqueUrlName: string,
     photos: 
         {
-            small: string,
-            large: string
+            small?: string | null,
+            large?: string | null
         }
 }
 
-interface UsersState {
-    users: Users[],
+type InitialStateType = {
+    users: Array<UserType>,
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
@@ -32,7 +32,7 @@ interface UsersState {
     followingInProgress: { isFetching: boolean, id: number }[]
 }
 
-let initialState: UsersState = {
+let initialState: InitialStateType = {
     users: [],
     pageSize: 9,
     totalUsersCount: 0,
@@ -41,7 +41,7 @@ let initialState: UsersState = {
     followingInProgress: []
 }
 
-const usersReducer = (state = initialState, action: AnyAction) => {
+const usersReducer = (state = initialState, action: AnyAction): InitialStateType => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -86,7 +86,7 @@ const usersReducer = (state = initialState, action: AnyAction) => {
 
 export const followSucsess = (userId: number) => ({ type: FOLLOW, userId });
 export const unfollowSucsess = (userId: number) => ({ type: UNFOLLOW, userId });
-export const setUsers = (users: Users) => ({ type: SET_USERS, users });
+export const setUsers = (users: Array<UserType>) => ({ type: SET_USERS, users });
 export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalCount: number) => ({type: SET_TOTAL_USERS, totalCount});
 export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching});

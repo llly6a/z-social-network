@@ -1,11 +1,24 @@
 import { stopSubmit } from "redux-form";
 import { authAPI } from "../api/api";
+import { AnyAction } from 'redux';
+import { AppThunk } from './redux-store';
 
 const SET_USER_DATA = 'auth/SET_USER_DATA';
 const TOGGLE_IS_FETCHING = 'auth/TOGGLE_IS_FETCHING';
 const SET_USER_PHOTO = 'auth/SET_USER_PHOTO';
 
-let initialState = {
+type InitialStateType = {
+    userId: number | null,
+    email: string | null,
+    login: string | null,
+    password: string | null,
+    rememberMe: boolean,
+    userPhoto: string | null,
+    isFetching: boolean,
+    isAuth: boolean
+}
+
+const initialState: InitialStateType = {
     userId: null,
     email:null,
     login: null,
@@ -16,7 +29,7 @@ let initialState = {
     isAuth: false
 }
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: AnyAction) => {
     switch (action.type) {
         case SET_USER_DATA:
             return {
@@ -38,11 +51,36 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_USER_DATA, payload:
-    {userId, email, login, isAuth} });
-export const setUserPhoto = (userPhoto) => ({ type: SET_USER_PHOTO, userPhoto});
-export const setFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
-export const getAuthUserData = () => async (dispatch) => {
+type SetAuthUserDataActionPayloadType = {
+    userId: number | null
+    email: string | null
+    login: string | null
+    isAuth: boolean
+}
+
+type SetAuthUserDataActionType = {
+    type: typeof SET_USER_DATA,
+    payload: SetAuthUserDataActionPayloadType
+}
+
+export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean):SetAuthUserDataActionType =>
+ ({ type: SET_USER_DATA, payload: {userId, email, login, isAuth} });
+
+type SetUserPhotoType = {
+    type: typeof SET_USER_PHOTO,
+    userPhoto: string
+}
+
+export const setUserPhoto = (userPhoto: string): SetUserPhotoType => ({ type: SET_USER_PHOTO, userPhoto});
+
+type SetFetchingType = {
+    type: typeof TOGGLE_IS_FETCHING,
+    isFetching: boolean
+}
+
+export const setFetching = (isFetching: boolean): SetFetchingType => ({ type: TOGGLE_IS_FETCHING, isFetching });
+
+export const getAuthUserData = ():AppThunk => async (dispatch) => {
     dispatch(setFetching(true));
     let response = await authAPI.authMe();
 
@@ -53,7 +91,7 @@ export const getAuthUserData = () => async (dispatch) => {
     }
 }
 
-export const login = (email, password, rememberMe) => async (dispatch) => {
+export const login = (email: string, password: string, rememberMe: boolean): AppThunk => async (dispatch) => {
 
     let response = await authAPI.login(email, password, rememberMe);
     
@@ -65,7 +103,7 @@ export const login = (email, password, rememberMe) => async (dispatch) => {
     }
 }
 
-export const logout = () => async (dispatch) => {
+export const logout = (): AppThunk => async (dispatch) => {
     let response = await authAPI.logout();
     if(response.data.resultCode === 0){
         dispatch(setAuthUserData(null ,null, null, false));
