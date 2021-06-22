@@ -30,6 +30,11 @@
     height: auto;
 }
 
+.loading {
+    background-color: black;
+}
+
+
 @media (max-width: 641px){
     .user {
         width: calc(50% - 1em);

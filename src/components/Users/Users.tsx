@@ -4,8 +4,12 @@ import userIcon from '../../assets/images/user.svg';
 import { NavLink } from 'react-router-dom';
 import Paginator from '../common/Paginator/Paginator';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { follow, requestUsers, unfollow } from '../../redux/usersReducer';
+import { follow, requestUsers, unfollow, UsersType } from '../../redux/usersReducer';
 import Preloader from '../common/Preloader/Preloader';
+
+type PropsType = {
+    users: UsersType
+}
 
 let Users = () => {
 
@@ -17,7 +21,7 @@ let Users = () => {
         currentPage,
         isFetching,
         followingInProgress
-    } = useSelector(state => state.users, shallowEqual)
+    } = useSelector((state:PropsType) => state.users, shallowEqual)
 
     // dispatch functions
 
@@ -28,15 +32,15 @@ let Users = () => {
         dispatch(requestUsers(currentPage, pageSize))
     },[dispatch, currentPage, pageSize]);
 
-    const onPageChanged = (newPage) => {
+    const onPageChanged = (newPage: number) => {
         dispatch(requestUsers(newPage, pageSize))
     }
 
-    const onFollow = (id) => {
+    const onFollow = (id: number) => {
         dispatch(follow(id));
     }
 
-    const onUnFollow = (id) => {
+    const onUnFollow = (id: number) => {
         dispatch(unfollow(id));
     }
 
@@ -63,9 +67,9 @@ let Users = () => {
             <p>{u.name}</p>
             <div className={s.follow}>
                 {u.followed
-                ? <button disabled={followingInProgress.some(id => id === u.id)}
+                ? <button disabled={followingInProgress.some(({id}) => id === u.id)}
                 onClick={() => onUnFollow(u.id)}>UnFollow</button>
-                : <button disabled={followingInProgress.some(id => id === u.id)}
+                : <button disabled={followingInProgress.some(({id}) => id === u.id)}
                 onClick={() => onFollow(u.id)}>Follow</button>
                 }
             </div>

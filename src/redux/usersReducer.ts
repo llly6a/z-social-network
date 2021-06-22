@@ -16,6 +16,7 @@ type UserType = {
     name: string,
     status: string,
     uniqueUrlName: string,
+    followed: boolean,
     photos: 
         {
             small?: string | null,
@@ -23,7 +24,7 @@ type UserType = {
         }
 }
 
-type InitialStateType = {
+export type UsersType = {
     users: Array<UserType>,
     pageSize: number,
     totalUsersCount: number,
@@ -32,7 +33,7 @@ type InitialStateType = {
     followingInProgress: { isFetching: boolean, id: number }[]
 }
 
-let initialState: InitialStateType = {
+let initialState: UsersType = {
     users: [],
     pageSize: 9,
     totalUsersCount: 0,
@@ -41,7 +42,7 @@ let initialState: InitialStateType = {
     followingInProgress: []
 }
 
-const usersReducer = (state = initialState, action: AnyAction): InitialStateType => {
+const usersReducer = (state = initialState, action: AnyAction): UsersType => {
     switch (action.type) {
         case FOLLOW:
             return {

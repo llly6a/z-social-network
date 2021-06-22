@@ -8,7 +8,7 @@ import usersReducer from './usersReducer';
 import {reducer as formReducer} from 'redux-form';
 import appReducer from './appReducer';
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     users: usersReducer,
@@ -21,7 +21,7 @@ let reducers = combineReducers({
 //let store = createStore(reducers, applyMiddleware(thunk));
 
 //const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, compose(applyMiddleware(thunk)));
+const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>

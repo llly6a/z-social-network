@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
-import s from './Paginator.module.css';
+import React, { useState } from 'react'
+import s from './Paginator.module.css'
 
-const Paginator = ({currentPage, entitiesCount, pageSize , buttonsCount , onPageChanged}) => {
+type PropsType = {
+    currentPage: number,
+    entitiesCount: number,
+    pageSize: number,
+    buttonsCount:number,
+    onPageChanged: (newPage: number) => void
+}
+
+const Paginator:React.FC<PropsType> = ({currentPage, entitiesCount, pageSize , buttonsCount , onPageChanged}) => {
     let [portion, setPortion] = useState(0);
     let pagesCount = Math.ceil(entitiesCount / pageSize);
     let maxPortions = Math.floor(pagesCount / buttonsCount);
 
-    let pages = [];
+    let pages: Array<number> = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
 
-    const onChangePortionClick = (i) => {
+    const onChangePortionClick = (i:number) => {
         setPortion(portion + i);
     }
 
